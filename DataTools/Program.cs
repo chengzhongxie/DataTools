@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utilities;
 
 namespace DataTools
 {
@@ -14,9 +16,17 @@ namespace DataTools
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Homes());
+            }
+            catch (Exception ex)
+            {
+                MessageCommon.ShowErr("亲！程序已炸！");
+                LogUtilities.WriteLog("Error", "Main", ex.ToString());
+            }
         }
     }
 }
