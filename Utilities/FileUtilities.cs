@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Dto;
 using Common.Enum;
 using System;
 using System.Collections;
@@ -31,18 +32,22 @@ namespace Utilities
         /// <param name="folderIfFile">文件还是文件夹</param>
         public FileUtilities(string fileClass, string folderIfFile)
         {
+            Dictionary<string, string> valuePairs = null;
             // 非空判断
             if (string.IsNullOrWhiteSpace(fileClass) || string.IsNullOrWhiteSpace(folderIfFile))
             {
-                LogUtilities.WriteLog("ArgumentException", ClassMethodName, $"{nameof(fileClass)}:{fileClass}|{nameof(folderIfFile)}:{folderIfFile}");
-                throw new ArgumentException("message", nameof(fileClass));
+                valuePairs = new Dictionary<string, string>();
+                valuePairs.Add("fileClass", fileClass);
+                valuePairs.Add("folderIfFile", folderIfFile);
+                LogUtilities.IsNullErrorLog(valuePairs);
             }
-            // 校验参数格式
-            if ( fileClass != FileEnum.JsonFiles && fileClass != FileEnum.XMLFiles)
-            {
-                LogUtilities.WriteLog("FormatException", ClassMethodName, $"{nameof(FileClass)}:{FileClass}");
-                throw new FormatException("fileClass");
-            }
+            //// 校验参数格式
+            //if (fileClass != FileEnum.JsonFiles && fileClass != FileEnum.XMLFiles)
+            //{
+            //    valuePairs = new Dictionary<string, string>();
+            //    valuePairs.Add("fileClass", fileClass);
+            //    LogUtilities.FormatErrorLog(valuePairs);
+            //}
             FileClass = fileClass;
             FolderIfFile = folderIfFile;
         }
@@ -67,7 +72,7 @@ namespace Utilities
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = "c:\\";//默认打开路径
             //openFileDialog.Filter = "文本文件|*.txt|word文件|*.doc;*.docx|所有文件|*.*";//过滤文件格式 
-            openFileDialog.Filter = FileClass == FileEnum.JsonFiles ? "Json文件|*.json" : "XML文件|*.xml";//过滤文件格式 
+            openFileDialog.Filter = GetFilter(FileClass).Filter;//过滤文件格式 
             openFileDialog.FilterIndex = 2;//格式索引
             openFileDialog.RestoreDirectory = false;//每次打卡文件是否恢复默认路径
 
@@ -81,7 +86,7 @@ namespace Utilities
                 string extension = Path.GetExtension(openFileDialog.FileName);
                 //声明允许的后缀名
                 //string[] str = new string[] { ".gif", ".jpge", ".jpg" };
-                string[] str = FileClass == FileEnum.JsonFiles ? new string[] { ".json" } : new string[] { ".xml" };
+                string[] str = GetFilter(FileClass).Extension;
                 if (!((IList)str).Contains(extension))
                 {
                     MessageCommon.ShowErr("请上传正确的文件类型！");
@@ -129,6 +134,34 @@ namespace Utilities
                 defaultPath = dialog.SelectedPath;
             }
             return defaultPath;
+        }
+        #endregion
+
+        #region 公共方法
+        /// <summary>
+        /// 获取文件类型
+        /// </summary>
+        /// <param name="fileClass"></param>
+        /// <returns></returns>
+        private FileDto GetFilter(string fileClass)
+        {
+            FileDto file = new FileDto();
+            if (fileClass == FileEnum.JsonFiles)
+            {
+                file.Filter = "Json文件|*.json";
+                file.Extension = new string[] { ".json" };
+            }
+            else if (fileClass == FileEnum.XMLFiles)
+            {
+                file.Filter = "XML文件|*.xml";
+                file.Extension = new string[] { ".xml" };
+            }
+            else if (fileClass == FileEnum.ExcelFiles)
+            {
+                file.Filter = "Excel文件|*.xlsx;*.xls";
+                file.Extension = new string[] { ".xlsx", ".xls" };
+            }
+            return file;
         }
         #endregion
     }

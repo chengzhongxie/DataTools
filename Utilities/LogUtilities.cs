@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,35 +15,59 @@ namespace Utilities
     public static class LogUtilities
     {
         #region 存储日志
-        private static string path = Application.StartupPath + "/logs";
-
         /// <summary>
-        /// 记录日志
+        /// 错误日志
         /// </summary>
-        /// <param name="type">日志类型</param>
-        /// <param name="className">类方法</param>
-        /// <param name="content">信息</param>
-        public static void WriteLog(string type, string className, string content)
+        /// <param name="message">错误日志</param>
+        public static void Error(string message)
         {
-            if (!Directory.Exists(path))//如果日志目录不存在就创建
+            log4net.ILog log = log4net.LogManager.GetLogger("Error");
+            if (log.IsInfoEnabled)
             {
-                Directory.CreateDirectory(path);
+                log.Error(message);
             }
-
-            string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");//获取当前系统时间
-            string filename = path + "/" + DateTime.Now.ToString("yyyy-MM-dd") + ".log";//用日期对日志文件命名
-
-            //创建或打开日志文件，向日志文件末尾追加记录
-            using (StreamWriter mySw = File.AppendText(filename))
+            log = null;
+        }
+        /// <summary>
+        /// 普通日志
+        /// </summary>
+        /// <param name="message">日志内容</param>
+        public static void Info(string message)
+        {
+            log4net.ILog log = log4net.LogManager.GetLogger("InfoLog");
+            if (log.IsInfoEnabled)
             {
-                //向日志文件写入内容
-                string write_content = $"{time}|{type}|{className}：{content}";
-                mySw.WriteLine(write_content);
-
-                //关闭日志文件
-                mySw.Close();
+                log.Info(message);
             }
+            log = null;
         }
         #endregion
+
+        /// <summary>
+        /// 记录空字段日志
+        /// </summary>
+        /// <param name="valuePairs">key:字段名 value:数据</param>
+        public static void IsNullErrorLog(Dictionary<string, string> valuePairs)
+        {
+            StringBuilder sbValue = new StringBuilder();
+            foreach (var item in valuePairs)
+            {
+                sbValue.Append($"{item.Key}:[{item.Value}]");
+            }
+            throw new ArgumentException(sbValue.ToString(), "字段为空数据");
+        }
+        /// <summary>
+        /// 记录字段格式错误
+        /// </summary>
+        /// <param name="valuePairs">key:字段名 value:数据</param>
+        public static void FormatErrorLog(Dictionary<string, string> valuePairs)
+        {
+            StringBuilder sbValue = new StringBuilder();
+            foreach (var item in valuePairs)
+            {
+                sbValue.Append($"{item.Key}:[{item.Value}]");
+            }
+            throw new FormatException(sbValue.ToString());
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Common
         /// </summary>
         /// <param name="type">类型 war:警告  que:询问  err:错误  其他默认为消息提示 </param>
         /// <param name="msg">消息</param>
-        public static DialogResult ShowMassage(string type, string msg)
+        private static DialogResult ShowMassage(string type, string msg)
         {
 
             switch (type)

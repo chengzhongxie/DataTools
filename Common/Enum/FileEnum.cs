@@ -28,12 +28,25 @@ namespace Common.Enum
         /// </summary>
         public static string XMLFiles { get { return "XML"; } }
         /// <summary>
+        /// Excel文件
+        /// </summary>
+        public static string ExcelFiles { get { return "Excel"; } }
+        /// <summary>
         /// Json转Excel
         /// </summary>
         public static string JsonToExcel { get { return "Json转Excel"; } }
         /// <summary>
+        /// Excel转Json
+        /// </summary>
+        public static string ExcelToJson { get { return "Excel转Json"; } }
+        /// <summary>
         /// XML转Excel
         /// </summary>
         public static string XMLToExcel { get { return "XML转Excel"; } }
+        /// <summary>
+        /// Excel转XML
+        /// </summary>
+        public static string ExcelToXML { get { return "Excel转XML"; } }
+
     }
 }
