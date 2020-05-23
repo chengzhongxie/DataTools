@@ -1,6 +1,6 @@
 ﻿namespace DataTools
 {
-    partial class Homes
+    partial class 结果集
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -33,6 +33,8 @@
             this.数据模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文件模式容器 = new System.Windows.Forms.GroupBox();
             this.文件模式_文件类型 = new System.Windows.Forms.GroupBox();
+            this.Excel转XML = new System.Windows.Forms.RadioButton();
+            this.Excel转Json = new System.Windows.Forms.RadioButton();
             this.Json转Excel = new System.Windows.Forms.RadioButton();
             this.XML转Excel = new System.Windows.Forms.RadioButton();
             this.开始转换 = new System.Windows.Forms.Button();
@@ -41,14 +43,37 @@
             this.选择文件夹 = new System.Windows.Forms.Button();
             this.选择文件 = new System.Windows.Forms.Button();
             this.数据模式容器 = new System.Windows.Forms.GroupBox();
+            this.查询 = new System.Windows.Forms.Button();
+            this.脚本语句 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.数据库ID_Value = new System.Windows.Forms.ComboBox();
+            this.测试链接 = new System.Windows.Forms.Button();
+            this.记住账号 = new System.Windows.Forms.CheckBox();
+            this.数据模式_数据类型 = new System.Windows.Forms.GroupBox();
+            this.Oracle = new System.Windows.Forms.RadioButton();
+            this.MySql = new System.Windows.Forms.RadioButton();
+            this.SqlService = new System.Windows.Forms.RadioButton();
+            this.密码_Value = new System.Windows.Forms.TextBox();
+            this.密码 = new System.Windows.Forms.Label();
+            this.用户名_Value = new System.Windows.Forms.TextBox();
+            this.用户名 = new System.Windows.Forms.Label();
+            this.数据库ID = new System.Windows.Forms.Label();
+            this.数据模式_文件类型 = new System.Windows.Forms.GroupBox();
+            this.XML文件 = new System.Windows.Forms.RadioButton();
+            this.Json文件 = new System.Windows.Forms.RadioButton();
+            this.Excel文件 = new System.Windows.Forms.RadioButton();
             this.打开文件 = new System.Windows.Forms.OpenFileDialog();
             this.保存文件 = new System.Windows.Forms.SaveFileDialog();
             this.打开文件夹 = new System.Windows.Forms.FolderBrowserDialog();
-            this.Excel转Json = new System.Windows.Forms.RadioButton();
-            this.Excel转XML = new System.Windows.Forms.RadioButton();
+            this.导出 = new System.Windows.Forms.Button();
+            this.库_Value = new System.Windows.Forms.TextBox();
+            this.库 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.文件模式容器.SuspendLayout();
             this.文件模式_文件类型.SuspendLayout();
+            this.数据模式容器.SuspendLayout();
+            this.数据模式_数据类型.SuspendLayout();
+            this.数据模式_文件类型.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -67,14 +92,14 @@
             // 文件模式ToolStripMenuItem
             // 
             this.文件模式ToolStripMenuItem.Name = "文件模式ToolStripMenuItem";
-            this.文件模式ToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.文件模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.文件模式ToolStripMenuItem.Text = "文件模式";
             this.文件模式ToolStripMenuItem.Click += new System.EventHandler(this.文件模式ToolStripMenuItem_Click);
             // 
             // 数据模式ToolStripMenuItem
             // 
             this.数据模式ToolStripMenuItem.Name = "数据模式ToolStripMenuItem";
-            this.数据模式ToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.数据模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.数据模式ToolStripMenuItem.Text = "数据模式";
             this.数据模式ToolStripMenuItem.Click += new System.EventHandler(this.数据模式ToolStripMenuItem_Click);
             // 
@@ -110,6 +135,29 @@
             this.文件模式_文件类型.TabIndex = 7;
             this.文件模式_文件类型.TabStop = false;
             // 
+            // Excel转XML
+            // 
+            this.Excel转XML.AutoSize = true;
+            this.Excel转XML.Location = new System.Drawing.Point(163, 56);
+            this.Excel转XML.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Excel转XML.Name = "Excel转XML";
+            this.Excel转XML.Size = new System.Drawing.Size(107, 19);
+            this.Excel转XML.TabIndex = 3;
+            this.Excel转XML.Text = "Excel转XML";
+            this.Excel转XML.UseVisualStyleBackColor = true;
+            // 
+            // Excel转Json
+            // 
+            this.Excel转Json.AutoSize = true;
+            this.Excel转Json.Location = new System.Drawing.Point(19, 56);
+            this.Excel转Json.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Excel转Json.Name = "Excel转Json";
+            this.Excel转Json.Size = new System.Drawing.Size(115, 19);
+            this.Excel转Json.TabIndex = 2;
+            this.Excel转Json.Text = "Excel转Json";
+            this.Excel转Json.UseVisualStyleBackColor = true;
+            this.Excel转Json.Click += new System.EventHandler(this.文件类型选择_Click);
+            // 
             // Json转Excel
             // 
             this.Json转Excel.AutoSize = true;
@@ -119,6 +167,7 @@
             this.Json转Excel.Name = "Json转Excel";
             this.Json转Excel.Size = new System.Drawing.Size(115, 19);
             this.Json转Excel.TabIndex = 0;
+            this.Json转Excel.TabStop = true;
             this.Json转Excel.Text = "Json转Excel";
             this.Json转Excel.UseVisualStyleBackColor = true;
             this.Json转Excel.Click += new System.EventHandler(this.文件类型选择_Click);
@@ -190,7 +239,23 @@
             // 
             // 数据模式容器
             // 
-            this.数据模式容器.Location = new System.Drawing.Point(933, 12);
+            this.数据模式容器.Controls.Add(this.库_Value);
+            this.数据模式容器.Controls.Add(this.库);
+            this.数据模式容器.Controls.Add(this.导出);
+            this.数据模式容器.Controls.Add(this.查询);
+            this.数据模式容器.Controls.Add(this.脚本语句);
+            this.数据模式容器.Controls.Add(this.richTextBox1);
+            this.数据模式容器.Controls.Add(this.数据库ID_Value);
+            this.数据模式容器.Controls.Add(this.测试链接);
+            this.数据模式容器.Controls.Add(this.记住账号);
+            this.数据模式容器.Controls.Add(this.数据模式_数据类型);
+            this.数据模式容器.Controls.Add(this.密码_Value);
+            this.数据模式容器.Controls.Add(this.密码);
+            this.数据模式容器.Controls.Add(this.用户名_Value);
+            this.数据模式容器.Controls.Add(this.用户名);
+            this.数据模式容器.Controls.Add(this.数据库ID);
+            this.数据模式容器.Controls.Add(this.数据模式_文件类型);
+            this.数据模式容器.Location = new System.Drawing.Point(12, 32);
             this.数据模式容器.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.数据模式容器.Name = "数据模式容器";
             this.数据模式容器.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -200,34 +265,218 @@
             this.数据模式容器.Text = "数据模式";
             this.数据模式容器.Visible = false;
             // 
+            // 查询
+            // 
+            this.查询.Location = new System.Drawing.Point(388, 519);
+            this.查询.Name = "查询";
+            this.查询.Size = new System.Drawing.Size(180, 35);
+            this.查询.TabIndex = 13;
+            this.查询.Text = "查询";
+            this.查询.UseVisualStyleBackColor = true;
+            // 
+            // 脚本语句
+            // 
+            this.脚本语句.AutoSize = true;
+            this.脚本语句.Location = new System.Drawing.Point(281, 25);
+            this.脚本语句.Name = "脚本语句";
+            this.脚本语句.Size = new System.Drawing.Size(82, 15);
+            this.脚本语句.TabIndex = 12;
+            this.脚本语句.Text = "脚本语句：";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(281, 43);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(644, 470);
+            this.richTextBox1.TabIndex = 11;
+            this.richTextBox1.Text = "";
+            // 
+            // 数据库ID_Value
+            // 
+            this.数据库ID_Value.FormattingEnabled = true;
+            this.数据库ID_Value.Location = new System.Drawing.Point(24, 249);
+            this.数据库ID_Value.Name = "数据库ID_Value";
+            this.数据库ID_Value.Size = new System.Drawing.Size(235, 23);
+            this.数据库ID_Value.TabIndex = 10;
+            // 
+            // 测试链接
+            // 
+            this.测试链接.Location = new System.Drawing.Point(43, 511);
+            this.测试链接.Name = "测试链接";
+            this.测试链接.Size = new System.Drawing.Size(180, 35);
+            this.测试链接.TabIndex = 9;
+            this.测试链接.Text = "测试链接";
+            this.测试链接.UseVisualStyleBackColor = true;
+            // 
+            // 记住账号
+            // 
+            this.记住账号.AutoSize = true;
+            this.记住账号.Checked = true;
+            this.记住账号.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.记住账号.Location = new System.Drawing.Point(22, 472);
+            this.记住账号.Name = "记住账号";
+            this.记住账号.Size = new System.Drawing.Size(89, 19);
+            this.记住账号.TabIndex = 8;
+            this.记住账号.Text = "记住账号";
+            this.记住账号.UseVisualStyleBackColor = true;
+            // 
+            // 数据模式_数据类型
+            // 
+            this.数据模式_数据类型.Controls.Add(this.Oracle);
+            this.数据模式_数据类型.Controls.Add(this.MySql);
+            this.数据模式_数据类型.Controls.Add(this.SqlService);
+            this.数据模式_数据类型.Location = new System.Drawing.Point(24, 121);
+            this.数据模式_数据类型.Name = "数据模式_数据类型";
+            this.数据模式_数据类型.Size = new System.Drawing.Size(238, 89);
+            this.数据模式_数据类型.TabIndex = 7;
+            this.数据模式_数据类型.TabStop = false;
+            // 
+            // Oracle
+            // 
+            this.Oracle.AutoSize = true;
+            this.Oracle.Location = new System.Drawing.Point(144, 20);
+            this.Oracle.Name = "Oracle";
+            this.Oracle.Size = new System.Drawing.Size(76, 19);
+            this.Oracle.TabIndex = 2;
+            this.Oracle.Text = "Oracle";
+            this.Oracle.UseVisualStyleBackColor = true;
+            // 
+            // MySql
+            // 
+            this.MySql.AutoSize = true;
+            this.MySql.Location = new System.Drawing.Point(19, 53);
+            this.MySql.Name = "MySql";
+            this.MySql.Size = new System.Drawing.Size(76, 19);
+            this.MySql.TabIndex = 1;
+            this.MySql.Text = "My Sql";
+            this.MySql.UseVisualStyleBackColor = true;
+            // 
+            // SqlService
+            // 
+            this.SqlService.AutoSize = true;
+            this.SqlService.Checked = true;
+            this.SqlService.Location = new System.Drawing.Point(19, 20);
+            this.SqlService.Name = "SqlService";
+            this.SqlService.Size = new System.Drawing.Size(116, 19);
+            this.SqlService.TabIndex = 0;
+            this.SqlService.TabStop = true;
+            this.SqlService.Text = "Sql Service";
+            this.SqlService.UseVisualStyleBackColor = true;
+            // 
+            // 密码_Value
+            // 
+            this.密码_Value.Location = new System.Drawing.Point(22, 432);
+            this.密码_Value.Name = "密码_Value";
+            this.密码_Value.Size = new System.Drawing.Size(237, 25);
+            this.密码_Value.TabIndex = 6;
+            // 
+            // 密码
+            // 
+            this.密码.AutoSize = true;
+            this.密码.Location = new System.Drawing.Point(21, 405);
+            this.密码.Name = "密码";
+            this.密码.Size = new System.Drawing.Size(52, 15);
+            this.密码.TabIndex = 5;
+            this.密码.Text = "密码：";
+            // 
+            // 用户名_Value
+            // 
+            this.用户名_Value.Location = new System.Drawing.Point(22, 370);
+            this.用户名_Value.Name = "用户名_Value";
+            this.用户名_Value.Size = new System.Drawing.Size(237, 25);
+            this.用户名_Value.TabIndex = 4;
+            // 
+            // 用户名
+            // 
+            this.用户名.AutoSize = true;
+            this.用户名.Location = new System.Drawing.Point(21, 343);
+            this.用户名.Name = "用户名";
+            this.用户名.Size = new System.Drawing.Size(67, 15);
+            this.用户名.TabIndex = 3;
+            this.用户名.Text = "用户名：";
+            // 
+            // 数据库ID
+            // 
+            this.数据库ID.AutoSize = true;
+            this.数据库ID.Location = new System.Drawing.Point(21, 225);
+            this.数据库ID.Name = "数据库ID";
+            this.数据库ID.Size = new System.Drawing.Size(83, 15);
+            this.数据库ID.TabIndex = 1;
+            this.数据库ID.Text = "数据库ID：";
+            // 
+            // 数据模式_文件类型
+            // 
+            this.数据模式_文件类型.Controls.Add(this.XML文件);
+            this.数据模式_文件类型.Controls.Add(this.Json文件);
+            this.数据模式_文件类型.Controls.Add(this.Excel文件);
+            this.数据模式_文件类型.Location = new System.Drawing.Point(24, 23);
+            this.数据模式_文件类型.Name = "数据模式_文件类型";
+            this.数据模式_文件类型.Size = new System.Drawing.Size(238, 92);
+            this.数据模式_文件类型.TabIndex = 0;
+            this.数据模式_文件类型.TabStop = false;
+            // 
+            // XML文件
+            // 
+            this.XML文件.AutoSize = true;
+            this.XML文件.Location = new System.Drawing.Point(19, 54);
+            this.XML文件.Name = "XML文件";
+            this.XML文件.Size = new System.Drawing.Size(82, 19);
+            this.XML文件.TabIndex = 2;
+            this.XML文件.Text = "XML文件";
+            this.XML文件.UseVisualStyleBackColor = true;
+            // 
+            // Json文件
+            // 
+            this.Json文件.AutoSize = true;
+            this.Json文件.Location = new System.Drawing.Point(123, 19);
+            this.Json文件.Name = "Json文件";
+            this.Json文件.Size = new System.Drawing.Size(90, 19);
+            this.Json文件.TabIndex = 1;
+            this.Json文件.Text = "Json文件";
+            this.Json文件.UseVisualStyleBackColor = true;
+            // 
+            // Excel文件
+            // 
+            this.Excel文件.AutoSize = true;
+            this.Excel文件.Checked = true;
+            this.Excel文件.Location = new System.Drawing.Point(19, 19);
+            this.Excel文件.Name = "Excel文件";
+            this.Excel文件.Size = new System.Drawing.Size(98, 19);
+            this.Excel文件.TabIndex = 0;
+            this.Excel文件.TabStop = true;
+            this.Excel文件.Text = "Excel文件";
+            this.Excel文件.UseVisualStyleBackColor = true;
+            // 
             // 打开文件
             // 
             this.打开文件.FileName = "打开文件";
             // 
-            // Excel转Json
+            // 导出
             // 
-            this.Excel转Json.AutoSize = true;
-            this.Excel转Json.Location = new System.Drawing.Point(19, 56);
-            this.Excel转Json.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Excel转Json.Name = "Excel转Json";
-            this.Excel转Json.Size = new System.Drawing.Size(115, 19);
-            this.Excel转Json.TabIndex = 2;
-            this.Excel转Json.Text = "Excel转Json";
-            this.Excel转Json.UseVisualStyleBackColor = true;
-            this.Excel转Json.Click += new System.EventHandler(this.文件类型选择_Click);
+            this.导出.Location = new System.Drawing.Point(618, 519);
+            this.导出.Name = "导出";
+            this.导出.Size = new System.Drawing.Size(180, 35);
+            this.导出.TabIndex = 14;
+            this.导出.Text = "导出";
+            this.导出.UseVisualStyleBackColor = true;
             // 
-            // Excel转XML
+            // 库_Value
             // 
-            this.Excel转XML.AutoSize = true;
-            this.Excel转XML.Location = new System.Drawing.Point(163, 56);
-            this.Excel转XML.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Excel转XML.Name = "Excel转XML";
-            this.Excel转XML.Size = new System.Drawing.Size(107, 19);
-            this.Excel转XML.TabIndex = 3;
-            this.Excel转XML.Text = "Excel转XML";
-            this.Excel转XML.UseVisualStyleBackColor = true;
+            this.库_Value.Location = new System.Drawing.Point(22, 309);
+            this.库_Value.Name = "库_Value";
+            this.库_Value.Size = new System.Drawing.Size(237, 25);
+            this.库_Value.TabIndex = 16;
             // 
-            // Homes
+            // 库
+            // 
+            this.库.AutoSize = true;
+            this.库.Location = new System.Drawing.Point(21, 282);
+            this.库.Name = "库";
+            this.库.Size = new System.Drawing.Size(37, 15);
+            this.库.TabIndex = 15;
+            this.库.Text = "库：";
+            // 
+            // 结果集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -239,7 +488,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
-            this.Name = "Homes";
+            this.Name = "结果集";
             this.Text = "主页面";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -247,6 +496,12 @@
             this.文件模式容器.PerformLayout();
             this.文件模式_文件类型.ResumeLayout(false);
             this.文件模式_文件类型.PerformLayout();
+            this.数据模式容器.ResumeLayout(false);
+            this.数据模式容器.PerformLayout();
+            this.数据模式_数据类型.ResumeLayout(false);
+            this.数据模式_数据类型.PerformLayout();
+            this.数据模式_文件类型.ResumeLayout(false);
+            this.数据模式_文件类型.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,6 +527,28 @@
         private System.Windows.Forms.GroupBox 文件模式_文件类型;
         private System.Windows.Forms.RadioButton Excel转Json;
         private System.Windows.Forms.RadioButton Excel转XML;
+        private System.Windows.Forms.GroupBox 数据模式_文件类型;
+        private System.Windows.Forms.Label 数据库ID;
+        private System.Windows.Forms.RadioButton XML文件;
+        private System.Windows.Forms.RadioButton Json文件;
+        private System.Windows.Forms.RadioButton Excel文件;
+        private System.Windows.Forms.TextBox 密码_Value;
+        private System.Windows.Forms.Label 密码;
+        private System.Windows.Forms.TextBox 用户名_Value;
+        private System.Windows.Forms.Label 用户名;
+        private System.Windows.Forms.GroupBox 数据模式_数据类型;
+        private System.Windows.Forms.RadioButton SqlService;
+        private System.Windows.Forms.CheckBox 记住账号;
+        private System.Windows.Forms.RadioButton Oracle;
+        private System.Windows.Forms.RadioButton MySql;
+        private System.Windows.Forms.Button 测试链接;
+        private System.Windows.Forms.ComboBox 数据库ID_Value;
+        private System.Windows.Forms.Button 查询;
+        private System.Windows.Forms.Label 脚本语句;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button 导出;
+        private System.Windows.Forms.TextBox 库_Value;
+        private System.Windows.Forms.Label 库;
     }
 }
 

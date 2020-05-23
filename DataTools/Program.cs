@@ -43,7 +43,7 @@ namespace DataTools
                 Process instance = RunningInstance();
                 if (instance == null)
                 {
-                    Application.Run(new Homes());
+                    Application.Run(new 结果集());
                 }
                 else
                 {

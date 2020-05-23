@@ -14,9 +14,9 @@ using Utilities;
 
 namespace DataTools
 {
-    public partial class Homes : Form
+    public partial class 结果集 : Form
     {
-        public Homes()
+        public 结果集()
         {
             InitializeComponent();
             文件模式容器.Visible = true;// 默认显示文件模式容器
