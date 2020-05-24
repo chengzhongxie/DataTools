@@ -43,6 +43,9 @@
             this.选择文件夹 = new System.Windows.Forms.Button();
             this.选择文件 = new System.Windows.Forms.Button();
             this.数据模式容器 = new System.Windows.Forms.GroupBox();
+            this.库_Value = new System.Windows.Forms.TextBox();
+            this.库 = new System.Windows.Forms.Label();
+            this.导出 = new System.Windows.Forms.Button();
             this.查询 = new System.Windows.Forms.Button();
             this.脚本语句 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -52,7 +55,7 @@
             this.数据模式_数据类型 = new System.Windows.Forms.GroupBox();
             this.Oracle = new System.Windows.Forms.RadioButton();
             this.MySql = new System.Windows.Forms.RadioButton();
-            this.SqlService = new System.Windows.Forms.RadioButton();
+            this.SqlServer = new System.Windows.Forms.RadioButton();
             this.密码_Value = new System.Windows.Forms.TextBox();
             this.密码 = new System.Windows.Forms.Label();
             this.用户名_Value = new System.Windows.Forms.TextBox();
@@ -65,9 +68,8 @@
             this.打开文件 = new System.Windows.Forms.OpenFileDialog();
             this.保存文件 = new System.Windows.Forms.SaveFileDialog();
             this.打开文件夹 = new System.Windows.Forms.FolderBrowserDialog();
-            this.导出 = new System.Windows.Forms.Button();
-            this.库_Value = new System.Windows.Forms.TextBox();
-            this.库 = new System.Windows.Forms.Label();
+            this.保存位置 = new System.Windows.Forms.Button();
+            this.数据模式_保存位置 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.文件模式容器.SuspendLayout();
             this.文件模式_文件类型.SuspendLayout();
@@ -85,21 +87,21 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(965, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(965, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 文件模式ToolStripMenuItem
             // 
             this.文件模式ToolStripMenuItem.Name = "文件模式ToolStripMenuItem";
-            this.文件模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.文件模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
             this.文件模式ToolStripMenuItem.Text = "文件模式";
             this.文件模式ToolStripMenuItem.Click += new System.EventHandler(this.文件模式ToolStripMenuItem_Click);
             // 
             // 数据模式ToolStripMenuItem
             // 
             this.数据模式ToolStripMenuItem.Name = "数据模式ToolStripMenuItem";
-            this.数据模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.数据模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
             this.数据模式ToolStripMenuItem.Text = "数据模式";
             this.数据模式ToolStripMenuItem.Click += new System.EventHandler(this.数据模式ToolStripMenuItem_Click);
             // 
@@ -239,6 +241,8 @@
             // 
             // 数据模式容器
             // 
+            this.数据模式容器.Controls.Add(this.数据模式_保存位置);
+            this.数据模式容器.Controls.Add(this.保存位置);
             this.数据模式容器.Controls.Add(this.库_Value);
             this.数据模式容器.Controls.Add(this.库);
             this.数据模式容器.Controls.Add(this.导出);
@@ -265,11 +269,36 @@
             this.数据模式容器.Text = "数据模式";
             this.数据模式容器.Visible = false;
             // 
+            // 库_Value
+            // 
+            this.库_Value.Location = new System.Drawing.Point(12, 299);
+            this.库_Value.Name = "库_Value";
+            this.库_Value.Size = new System.Drawing.Size(237, 25);
+            this.库_Value.TabIndex = 16;
+            // 
+            // 库
+            // 
+            this.库.AutoSize = true;
+            this.库.Location = new System.Drawing.Point(11, 272);
+            this.库.Name = "库";
+            this.库.Size = new System.Drawing.Size(37, 15);
+            this.库.TabIndex = 15;
+            this.库.Text = "库：";
+            // 
+            // 导出
+            // 
+            this.导出.Location = new System.Drawing.Point(618, 510);
+            this.导出.Name = "导出";
+            this.导出.Size = new System.Drawing.Size(180, 44);
+            this.导出.TabIndex = 14;
+            this.导出.Text = "导出";
+            this.导出.UseVisualStyleBackColor = true;
+            // 
             // 查询
             // 
-            this.查询.Location = new System.Drawing.Point(388, 519);
+            this.查询.Location = new System.Drawing.Point(388, 510);
             this.查询.Name = "查询";
-            this.查询.Size = new System.Drawing.Size(180, 35);
+            this.查询.Size = new System.Drawing.Size(180, 44);
             this.查询.TabIndex = 13;
             this.查询.Text = "查询";
             this.查询.UseVisualStyleBackColor = true;
@@ -277,7 +306,7 @@
             // 脚本语句
             // 
             this.脚本语句.AutoSize = true;
-            this.脚本语句.Location = new System.Drawing.Point(281, 25);
+            this.脚本语句.Location = new System.Drawing.Point(265, 53);
             this.脚本语句.Name = "脚本语句";
             this.脚本语句.Size = new System.Drawing.Size(82, 15);
             this.脚本语句.TabIndex = 12;
@@ -285,47 +314,50 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(281, 43);
+            this.richTextBox1.Location = new System.Drawing.Point(268, 71);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(644, 470);
+            this.richTextBox1.Size = new System.Drawing.Size(667, 433);
             this.richTextBox1.TabIndex = 11;
             this.richTextBox1.Text = "";
             // 
             // 数据库ID_Value
             // 
+            this.数据库ID_Value.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.数据库ID_Value.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.数据库ID_Value.FormattingEnabled = true;
-            this.数据库ID_Value.Location = new System.Drawing.Point(24, 249);
+            this.数据库ID_Value.Location = new System.Drawing.Point(14, 239);
             this.数据库ID_Value.Name = "数据库ID_Value";
             this.数据库ID_Value.Size = new System.Drawing.Size(235, 23);
             this.数据库ID_Value.TabIndex = 10;
+            this.数据库ID_Value.SelectedIndexChanged += new System.EventHandler(this.数据库ID_Value_SelectedIndexChanged);
             // 
             // 测试链接
             // 
-            this.测试链接.Location = new System.Drawing.Point(43, 511);
+            this.测试链接.Location = new System.Drawing.Point(14, 499);
             this.测试链接.Name = "测试链接";
-            this.测试链接.Size = new System.Drawing.Size(180, 35);
+            this.测试链接.Size = new System.Drawing.Size(219, 55);
             this.测试链接.TabIndex = 9;
             this.测试链接.Text = "测试链接";
             this.测试链接.UseVisualStyleBackColor = true;
+            this.测试链接.Click += new System.EventHandler(this.测试链接_Click);
             // 
             // 记住账号
             // 
             this.记住账号.AutoSize = true;
-            this.记住账号.Checked = true;
-            this.记住账号.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.记住账号.Location = new System.Drawing.Point(22, 472);
+            this.记住账号.Location = new System.Drawing.Point(12, 462);
             this.记住账号.Name = "记住账号";
             this.记住账号.Size = new System.Drawing.Size(89, 19);
             this.记住账号.TabIndex = 8;
             this.记住账号.Text = "记住账号";
             this.记住账号.UseVisualStyleBackColor = true;
+            this.记住账号.CheckedChanged += new System.EventHandler(this.记住账号_CheckedChanged);
             // 
             // 数据模式_数据类型
             // 
             this.数据模式_数据类型.Controls.Add(this.Oracle);
             this.数据模式_数据类型.Controls.Add(this.MySql);
-            this.数据模式_数据类型.Controls.Add(this.SqlService);
-            this.数据模式_数据类型.Location = new System.Drawing.Point(24, 121);
+            this.数据模式_数据类型.Controls.Add(this.SqlServer);
+            this.数据模式_数据类型.Location = new System.Drawing.Point(13, 109);
             this.数据模式_数据类型.Name = "数据模式_数据类型";
             this.数据模式_数据类型.Size = new System.Drawing.Size(238, 89);
             this.数据模式_数据类型.TabIndex = 7;
@@ -346,34 +378,35 @@
             this.MySql.AutoSize = true;
             this.MySql.Location = new System.Drawing.Point(19, 53);
             this.MySql.Name = "MySql";
-            this.MySql.Size = new System.Drawing.Size(76, 19);
+            this.MySql.Size = new System.Drawing.Size(68, 19);
             this.MySql.TabIndex = 1;
-            this.MySql.Text = "My Sql";
+            this.MySql.Text = "MySql";
             this.MySql.UseVisualStyleBackColor = true;
             // 
-            // SqlService
+            // SqlServer
             // 
-            this.SqlService.AutoSize = true;
-            this.SqlService.Checked = true;
-            this.SqlService.Location = new System.Drawing.Point(19, 20);
-            this.SqlService.Name = "SqlService";
-            this.SqlService.Size = new System.Drawing.Size(116, 19);
-            this.SqlService.TabIndex = 0;
-            this.SqlService.TabStop = true;
-            this.SqlService.Text = "Sql Service";
-            this.SqlService.UseVisualStyleBackColor = true;
+            this.SqlServer.AutoSize = true;
+            this.SqlServer.Checked = true;
+            this.SqlServer.Location = new System.Drawing.Point(19, 20);
+            this.SqlServer.Name = "SqlServer";
+            this.SqlServer.Size = new System.Drawing.Size(100, 19);
+            this.SqlServer.TabIndex = 0;
+            this.SqlServer.TabStop = true;
+            this.SqlServer.Text = "SqlServer";
+            this.SqlServer.UseVisualStyleBackColor = true;
             // 
             // 密码_Value
             // 
-            this.密码_Value.Location = new System.Drawing.Point(22, 432);
+            this.密码_Value.Location = new System.Drawing.Point(12, 422);
             this.密码_Value.Name = "密码_Value";
             this.密码_Value.Size = new System.Drawing.Size(237, 25);
             this.密码_Value.TabIndex = 6;
+            this.密码_Value.UseSystemPasswordChar = true;
             // 
             // 密码
             // 
             this.密码.AutoSize = true;
-            this.密码.Location = new System.Drawing.Point(21, 405);
+            this.密码.Location = new System.Drawing.Point(11, 395);
             this.密码.Name = "密码";
             this.密码.Size = new System.Drawing.Size(52, 15);
             this.密码.TabIndex = 5;
@@ -381,7 +414,7 @@
             // 
             // 用户名_Value
             // 
-            this.用户名_Value.Location = new System.Drawing.Point(22, 370);
+            this.用户名_Value.Location = new System.Drawing.Point(12, 360);
             this.用户名_Value.Name = "用户名_Value";
             this.用户名_Value.Size = new System.Drawing.Size(237, 25);
             this.用户名_Value.TabIndex = 4;
@@ -389,7 +422,7 @@
             // 用户名
             // 
             this.用户名.AutoSize = true;
-            this.用户名.Location = new System.Drawing.Point(21, 343);
+            this.用户名.Location = new System.Drawing.Point(11, 333);
             this.用户名.Name = "用户名";
             this.用户名.Size = new System.Drawing.Size(67, 15);
             this.用户名.TabIndex = 3;
@@ -398,7 +431,7 @@
             // 数据库ID
             // 
             this.数据库ID.AutoSize = true;
-            this.数据库ID.Location = new System.Drawing.Point(21, 225);
+            this.数据库ID.Location = new System.Drawing.Point(11, 215);
             this.数据库ID.Name = "数据库ID";
             this.数据库ID.Size = new System.Drawing.Size(83, 15);
             this.数据库ID.TabIndex = 1;
@@ -409,7 +442,7 @@
             this.数据模式_文件类型.Controls.Add(this.XML文件);
             this.数据模式_文件类型.Controls.Add(this.Json文件);
             this.数据模式_文件类型.Controls.Add(this.Excel文件);
-            this.数据模式_文件类型.Location = new System.Drawing.Point(24, 23);
+            this.数据模式_文件类型.Location = new System.Drawing.Point(14, 17);
             this.数据模式_文件类型.Name = "数据模式_文件类型";
             this.数据模式_文件类型.Size = new System.Drawing.Size(238, 92);
             this.数据模式_文件类型.TabIndex = 0;
@@ -451,30 +484,24 @@
             // 
             this.打开文件.FileName = "打开文件";
             // 
-            // 导出
+            // 保存位置
             // 
-            this.导出.Location = new System.Drawing.Point(618, 519);
-            this.导出.Name = "导出";
-            this.导出.Size = new System.Drawing.Size(180, 35);
-            this.导出.TabIndex = 14;
-            this.导出.Text = "导出";
-            this.导出.UseVisualStyleBackColor = true;
+            this.保存位置.Location = new System.Drawing.Point(258, 14);
+            this.保存位置.Name = "保存位置";
+            this.保存位置.Size = new System.Drawing.Size(129, 36);
+            this.保存位置.TabIndex = 17;
+            this.保存位置.Text = "保存位置：";
+            this.保存位置.UseVisualStyleBackColor = true;
+            this.保存位置.Click += new System.EventHandler(this.保存位置_Click);
             // 
-            // 库_Value
+            // 数据模式_保存位置
             // 
-            this.库_Value.Location = new System.Drawing.Point(22, 309);
-            this.库_Value.Name = "库_Value";
-            this.库_Value.Size = new System.Drawing.Size(237, 25);
-            this.库_Value.TabIndex = 16;
-            // 
-            // 库
-            // 
-            this.库.AutoSize = true;
-            this.库.Location = new System.Drawing.Point(21, 282);
-            this.库.Name = "库";
-            this.库.Size = new System.Drawing.Size(37, 15);
-            this.库.TabIndex = 15;
-            this.库.Text = "库：";
+            this.数据模式_保存位置.AutoSize = true;
+            this.数据模式_保存位置.ForeColor = System.Drawing.Color.Lime;
+            this.数据模式_保存位置.Location = new System.Drawing.Point(393, 25);
+            this.数据模式_保存位置.Name = "数据模式_保存位置";
+            this.数据模式_保存位置.Size = new System.Drawing.Size(0, 15);
+            this.数据模式_保存位置.TabIndex = 18;
             // 
             // 结果集
             // 
@@ -537,7 +564,7 @@
         private System.Windows.Forms.TextBox 用户名_Value;
         private System.Windows.Forms.Label 用户名;
         private System.Windows.Forms.GroupBox 数据模式_数据类型;
-        private System.Windows.Forms.RadioButton SqlService;
+        private System.Windows.Forms.RadioButton SqlServer;
         private System.Windows.Forms.CheckBox 记住账号;
         private System.Windows.Forms.RadioButton Oracle;
         private System.Windows.Forms.RadioButton MySql;
@@ -549,6 +576,8 @@
         private System.Windows.Forms.Button 导出;
         private System.Windows.Forms.TextBox 库_Value;
         private System.Windows.Forms.Label 库;
+        private System.Windows.Forms.Button 保存位置;
+        private System.Windows.Forms.Label 数据模式_保存位置;
     }
 }
 

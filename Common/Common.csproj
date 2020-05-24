@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\FileDto.cs" />
+    <Compile Include="Dto\SqlUserDto.cs" />
+    <Compile Include="EncryptionCommon.cs" />
     <Compile Include="Enum\FileEnum.cs" />
+    <Compile Include="Enum\SqlEnum.cs" />
     <Compile Include="MessageCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

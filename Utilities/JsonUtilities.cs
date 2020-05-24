@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,6 +30,48 @@ namespace Utilities
                 return dt;
             }
         }
+
+        /// <summary>
+        /// Json文件转换为Object
+        /// </summary>
+        /// <param name="jsonUrl"></param>
+        /// <returns></returns>
+        public T JsonToObject<T>(string jsonUrl)
+        {
+            using (StreamReader r = new StreamReader(jsonUrl))
+            {
+                string json = r.ReadToEnd();
+                T dt = JsonConvert.DeserializeObject<T>(json);
+                return dt;
+            }
+        }
+        /// <summary>
+        /// Json文件转换为List<T>
+        /// </summary>
+        /// <param name="jsonUrl"></param>
+        /// <returns></returns>
+        public List<T> JsonToObjectList<T>(string jsonUrl)
+        {
+            using (StreamReader r = new StreamReader(jsonUrl))
+            {
+                string json = r.ReadToEnd();
+                if (!string.IsNullOrWhiteSpace(json))
+                {
+                    return JsonConvert.DeserializeObject<List<T>>(json);
+                }
+                return new List<T>();
+            }
+        }
+        /// <summary>
+        /// 生成json串
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ts"></param>
+        /// <returns></returns>
+        public string JsonString<T>(List<T> ts)
+        {
+            return JsonConvert.SerializeObject(ts);
+        }
         /// <summary>
         /// 生成json文件保存
         /// </summary>
@@ -48,6 +91,19 @@ namespace Utilities
                 throw ex;
             }
             return true;
+        }
+
+        /// <summary>
+        /// 重新写入内容
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="json"></param>
+        public void WipeFileContent(string url, string json)
+        {
+            using (var stream = new System.IO.StreamWriter(url, false))
+            {
+                stream.Write(json);
+            }
         }
     }
 }

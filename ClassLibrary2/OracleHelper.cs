@@ -25,10 +25,10 @@ namespace Helper
             if (string.IsNullOrWhiteSpace(ip) || string.IsNullOrWhiteSpace(uid) || string.IsNullOrWhiteSpace(pwd) || string.IsNullOrWhiteSpace(database))
             {
                 valuePairs = new Dictionary<string, string>();
-                valuePairs.Add("ip", ip);
-                valuePairs.Add("uid", uid);
-                valuePairs.Add("pwd", pwd);
-                valuePairs.Add("database", database);
+                valuePairs.Add(nameof(ip), ip);
+                valuePairs.Add(nameof(uid), uid);
+                valuePairs.Add(nameof(pwd), pwd);
+                valuePairs.Add(nameof(database), database);
                 Utilities.LogUtilities.IsNullErrorLog(valuePairs);
             }
             // 处理端口号
@@ -55,7 +55,7 @@ namespace Helper
         /// <param name="oracleParameters">所传参数（必须按照存储过程参数顺序）</param>
         /// <param name="strConn">链接字符串</param>
         /// <returns></returns>
-        public static string ExecToStoredProcedureGetString(string cmdText, string outParameters, OracleParameter[] oracleParameters, string strConn)
+        public string ExecToStoredProcedureGetString(string cmdText, string outParameters, OracleParameter[] oracleParameters)
         {
             using (OracleConnection conn = new OracleConnection(strConn))
             {
@@ -82,7 +82,7 @@ namespace Helper
         /// <param name="oracleParameters">所传参数（必须按照存储过程参数顺序）</param>
         /// <param name="strConn">链接字符串</param>
         /// <returns></returns>
-        public static DataTable ExecToStoredProcedureGetTable(string storedProcedName, OracleParameter[] oracleParameters, string strConn)
+        public DataTable ExecToStoredProcedureGetTable(string storedProcedName, OracleParameter[] oracleParameters)
         {
             using (OracleConnection conn = new OracleConnection(strConn))
             {
@@ -106,7 +106,7 @@ namespace Helper
         /// <param name="oracleParameters">所传参数（必须按照存储过程参数顺序）</param>
         /// <param name="strConn">链接字符串</param>
         /// <returns></returns>
-        public static void ExecToStoredProcedure(string cmdText, OracleParameter[] oracleParameters, string strConn)
+        public void ExecToStoredProcedure(string cmdText, OracleParameter[] oracleParameters)
         {
             using (OracleConnection conn = new OracleConnection(strConn))
             {
@@ -126,13 +126,16 @@ namespace Helper
         /// <param name="oracleParameters">所传参数（必须按照存储过程参数顺序）</param>
         /// <param name="strConn">链接字符串</param>
         /// <returns></returns>
-        public static DataTable ExecToSqlGetTable(string cmdText, OracleParameter[] oracleParameters, string strConn)
+        public DataTable ExecToSqlGetTable(string cmdText, params OracleParameter[] oracleParameters)
         {
             using (OracleConnection conn = new OracleConnection(strConn))
             {
                 OracleCommand cmd = new OracleCommand(cmdText, conn);
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddRange(oracleParameters);
+                if (oracleParameters != null)
+                {
+                    cmd.Parameters.AddRange(oracleParameters);
+                }
                 OracleDataAdapter oda = new OracleDataAdapter(cmd);
                 conn.Open();
                 DataSet ds = new DataSet();
@@ -149,7 +152,7 @@ namespace Helper
         /// <param name="oracleParameters">所传参数（必须按照存储过程参数顺序）</param>
         /// <param name="strConn">链接字符串</param>
         /// <returns></returns>
-        public static DataTable ExecToSqlGetTable(string cmdText, string strConn)
+        public DataTable ExecToSqlGetTable(string cmdText)
         {
             using (OracleConnection conn = new OracleConnection(strConn))
             {
@@ -171,7 +174,7 @@ namespace Helper
         /// <param name="oracleParameters">所传参数（必须按照存储过程参数顺序）</param>
         /// <param name="strConn">链接字符串</param>
         /// <returns></returns>
-        public static int ExecToSqlNonQuery(string cmdText, OracleParameter[] oracleParameters, string strConn)
+        public int ExecToSqlNonQuery(string cmdText, OracleParameter[] oracleParameters, string strConn)
         {
             using (OracleConnection conn = new OracleConnection(strConn))
             {
@@ -191,7 +194,7 @@ namespace Helper
         /// <param name="oracleParameters">所传参数（必须按照存储过程参数顺序）</param>
         /// <param name="strConn">链接字符串</param>
         /// <returns></returns>
-        public static int ExecToSqlNonQuery(string cmdText, string strConn)
+        public int ExecToSqlNonQuery(string cmdText, string strConn)
         {
             using (OracleConnection conn = new OracleConnection(strConn))
             {

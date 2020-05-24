@@ -84,6 +84,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SqlUser.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -92,6 +93,10 @@
     <Content Include="安装.NET Framework\.NET Framework 4.6.2.exe" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary2\Helper.csproj">
+      <Project>{BE5A4329-17D2-49E0-B927-39EED82D233C}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{D942A3F3-5F53-4569-9CB9-A301042E3999}</Project>
       <Name>Common</Name>

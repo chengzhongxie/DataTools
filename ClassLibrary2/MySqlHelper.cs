@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using Utilities;
 
 namespace Helper
 {
@@ -27,10 +29,10 @@ namespace Helper
             if (string.IsNullOrWhiteSpace(ip) || string.IsNullOrWhiteSpace(uid) || string.IsNullOrWhiteSpace(pwd) || string.IsNullOrWhiteSpace(database))
             {
                 valuePairs = new Dictionary<string, string>();
-                valuePairs.Add("ip", ip);
-                valuePairs.Add("uid", uid);
-                valuePairs.Add("pwd", pwd);
-                valuePairs.Add("database", database);
+                valuePairs.Add(nameof(ip), ip);
+                valuePairs.Add(nameof(uid), uid);
+                valuePairs.Add(nameof(pwd), pwd);
+                valuePairs.Add(nameof(database), database);
                 Utilities.LogUtilities.IsNullErrorLog(valuePairs);
             }
             // 处理端口号
@@ -101,7 +103,10 @@ namespace Helper
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(sqlText, connstr))
             {
                 DataTable dt = new DataTable();
-                adapter.SelectCommand.Parameters.AddRange(parameters);
+                if (parameters != null)
+                {
+                    adapter.SelectCommand.Parameters.AddRange(parameters);
+                }
                 adapter.Fill(dt);
                 return dt;
             }

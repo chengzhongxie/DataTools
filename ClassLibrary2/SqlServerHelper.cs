@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -7,7 +8,7 @@ namespace Helper
     /// <summary>
     /// Sql Server
     /// </summary>
-    public class SqlHelper
+    public class SqlServerHelper
     {
         private readonly string constr = string.Empty;
 
@@ -18,17 +19,17 @@ namespace Helper
         /// <param name="uid">用户名</param>
         /// <param name="pwd">密码</param>
         /// <param name="database">库</param>
-        public SqlHelper(string ip, string uid, string pwd,string database)
+        public SqlServerHelper(string ip, string uid, string pwd,string database)
         {
             System.Collections.Generic.Dictionary<string, string> valuePairs = null;
             // 非空判断
             if (string.IsNullOrWhiteSpace(ip) || string.IsNullOrWhiteSpace(uid) || string.IsNullOrWhiteSpace(pwd) || string.IsNullOrWhiteSpace(database))
             {
-                valuePairs = new System.Collections.Generic.Dictionary<string, string>();
-                valuePairs.Add("ip", ip);
-                valuePairs.Add("uid", uid);
-                valuePairs.Add("pwd", pwd);
-                valuePairs.Add("database", database);
+                valuePairs = new Dictionary<string, string>();
+                valuePairs.Add(nameof(ip), ip);
+                valuePairs.Add(nameof(uid), uid);
+                valuePairs.Add(nameof(pwd), pwd);
+                valuePairs.Add(nameof(database), database);
                 Utilities.LogUtilities.IsNullErrorLog(valuePairs);
             }
             constr = $"server={ip};uid={uid};pwd={pwd};database={database};Integrated Security=SSPI; Connection Timeout=10";

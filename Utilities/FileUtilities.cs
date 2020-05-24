@@ -41,13 +41,6 @@ namespace Utilities
                 valuePairs.Add("folderIfFile", folderIfFile);
                 LogUtilities.IsNullErrorLog(valuePairs);
             }
-            //// 校验参数格式
-            //if (fileClass != FileEnum.JsonFiles && fileClass != FileEnum.XMLFiles)
-            //{
-            //    valuePairs = new Dictionary<string, string>();
-            //    valuePairs.Add("fileClass", fileClass);
-            //    LogUtilities.FormatErrorLog(valuePairs);
-            //}
             FileClass = fileClass;
             FolderIfFile = folderIfFile;
         }
