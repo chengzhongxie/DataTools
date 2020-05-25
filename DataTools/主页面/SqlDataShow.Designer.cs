@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.查询结果集 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.查询结果集)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // 查询结果集
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(1283, 608);
-            this.dataGridView1.TabIndex = 0;
+            this.查询结果集.AllowUserToAddRows = false;
+            this.查询结果集.AllowUserToDeleteRows = false;
+            this.查询结果集.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.查询结果集.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.查询结果集.Location = new System.Drawing.Point(0, 0);
+            this.查询结果集.Name = "查询结果集";
+            this.查询结果集.ReadOnly = true;
+            this.查询结果集.RowHeadersWidth = 51;
+            this.查询结果集.RowTemplate.Height = 27;
+            this.查询结果集.Size = new System.Drawing.Size(1283, 608);
+            this.查询结果集.TabIndex = 0;
             // 
             // SqlDataShow
             // 
             this.ClientSize = new System.Drawing.Size(1283, 608);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.查询结果集);
             this.Name = "SqlDataShow";
             this.Text = "查询结果";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.查询结果集)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView 查询结果集;
     }
 }

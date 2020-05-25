@@ -1,9 +1,11 @@
 ﻿using Common;
 using Common.Dto;
 using Common.Enum;
+using DataTools.主页面;
 using Helper;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -331,24 +333,7 @@ namespace DataTools
                     MessageCommon.ShowInf("数据链接信息不能为空！");
                     return;
                 }
-                SqlHelper sqlHelper = null;
-                if (sqls == SqlEnum.SqlServer)
-                {
-                    sqlHelper = new SqlHelper(数据库ID_Value.Text, 用户名_Value.Text, 密码_Value.Text, 库_Value.Text, SqlEnum.SqlServer);
-                }
-                else if (sqls == SqlEnum.Mysql)
-                {
-                    sqlHelper = new SqlHelper(数据库ID_Value.Text, 用户名_Value.Text, 密码_Value.Text, 库_Value.Text, SqlEnum.Mysql);
-                }
-                else if (sqls == SqlEnum.Oracle)
-                {
-                    sqlHelper = new SqlHelper(数据库ID_Value.Text, 用户名_Value.Text, 密码_Value.Text, 库_Value.Text, SqlEnum.Oracle);
-                }
-                else
-                {
-                    MessageCommon.ShowInf("连接失败！");
-                    return;
-                }
+                SqlHelper sqlHelper = sqlHelper = new SqlHelper(数据库ID_Value.Text, 用户名_Value.Text, 密码_Value.Text, 库_Value.Text, sqls);
                 if (sqlHelper.SqlTestLink())
                 {
                     MessageCommon.ShowInf("连接成功！");
@@ -369,8 +354,56 @@ namespace DataTools
             FileUtilities file = new FileUtilities(FileEnum.JsonFiles, FileEnum.Folder);
             数据模式_保存位置.Text = file.SelectFile();
         }
+
         #endregion
 
+        private void 查询_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(脚本语句_Value.Text))
+            {
+                MessageCommon.ShowErr("脚本语句不可为空！");
+                return;
+            }
+            SqlDataShow sqlData = new SqlDataShow();
+            #region 绑定数据
+            string sqls = string.Empty;
+            // 获取用户选择控件
+            foreach (Control c in 数据模式_数据类型.Controls)
+            {
+                if (c is RadioButton && ((RadioButton)c).Checked == true)
+                {
+                    sqls = ((RadioButton)c).Name;
+                }
+            }
+            SqlUserDto sqlUsers = new SqlUserDto();
+            sqlUsers.Server = 数据库ID_Value.Text;
+            sqlUsers.DataBase = 库_Value.Text;
+            sqlUsers.Uid = 用户名_Value.Text;
+            sqlUsers.Pwd = 密码_Value.Text;
+            sqlUsers.DatabaseType = sqls;
+            sqlData.BingData(脚本语句_Value.Text, sqlUsers);
+            #endregion
+            #region 判断窗体是否已打开     
+            Form test = Application.OpenForms["SqlDataShow"];  //查找是否打开过about窗体  
+            if ((test == null) || (test.IsDisposed)) //如果没有打开过
+            {
+                sqlData.Show();   //打开子窗体出来
+            }
+            else
+            {
+                sqlData.Activate(); //如果已经打开过就让其获得焦点                 
+            }
+            #endregion
 
+        }
+
+        private void 导出_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(数据模式_保存位置.Text))
+            {
+                MessageCommon.ShowErr("保存路径不能为空！");
+                return;
+            }
+        }
     }
 }

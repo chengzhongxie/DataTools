@@ -27,6 +27,10 @@ namespace Common.Dto
         /// 数据名
         /// </summary>
         public string DataBase { get; set; }
+        /// <summary>
+        /// 数据库类型
+        /// </summary>
+        public string DatabaseType { get; set; }
 
     }
 }

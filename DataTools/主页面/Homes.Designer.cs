@@ -43,12 +43,14 @@
             this.选择文件夹 = new System.Windows.Forms.Button();
             this.选择文件 = new System.Windows.Forms.Button();
             this.数据模式容器 = new System.Windows.Forms.GroupBox();
+            this.数据模式_保存位置 = new System.Windows.Forms.Label();
+            this.保存位置 = new System.Windows.Forms.Button();
             this.库_Value = new System.Windows.Forms.TextBox();
             this.库 = new System.Windows.Forms.Label();
             this.导出 = new System.Windows.Forms.Button();
             this.查询 = new System.Windows.Forms.Button();
             this.脚本语句 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.脚本语句_Value = new System.Windows.Forms.RichTextBox();
             this.数据库ID_Value = new System.Windows.Forms.ComboBox();
             this.测试链接 = new System.Windows.Forms.Button();
             this.记住账号 = new System.Windows.Forms.CheckBox();
@@ -68,8 +70,6 @@
             this.打开文件 = new System.Windows.Forms.OpenFileDialog();
             this.保存文件 = new System.Windows.Forms.SaveFileDialog();
             this.打开文件夹 = new System.Windows.Forms.FolderBrowserDialog();
-            this.保存位置 = new System.Windows.Forms.Button();
-            this.数据模式_保存位置 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.文件模式容器.SuspendLayout();
             this.文件模式_文件类型.SuspendLayout();
@@ -248,7 +248,7 @@
             this.数据模式容器.Controls.Add(this.导出);
             this.数据模式容器.Controls.Add(this.查询);
             this.数据模式容器.Controls.Add(this.脚本语句);
-            this.数据模式容器.Controls.Add(this.richTextBox1);
+            this.数据模式容器.Controls.Add(this.脚本语句_Value);
             this.数据模式容器.Controls.Add(this.数据库ID_Value);
             this.数据模式容器.Controls.Add(this.测试链接);
             this.数据模式容器.Controls.Add(this.记住账号);
@@ -268,6 +268,25 @@
             this.数据模式容器.TabStop = false;
             this.数据模式容器.Text = "数据模式";
             this.数据模式容器.Visible = false;
+            // 
+            // 数据模式_保存位置
+            // 
+            this.数据模式_保存位置.AutoSize = true;
+            this.数据模式_保存位置.ForeColor = System.Drawing.Color.Lime;
+            this.数据模式_保存位置.Location = new System.Drawing.Point(393, 25);
+            this.数据模式_保存位置.Name = "数据模式_保存位置";
+            this.数据模式_保存位置.Size = new System.Drawing.Size(0, 15);
+            this.数据模式_保存位置.TabIndex = 18;
+            // 
+            // 保存位置
+            // 
+            this.保存位置.Location = new System.Drawing.Point(258, 14);
+            this.保存位置.Name = "保存位置";
+            this.保存位置.Size = new System.Drawing.Size(129, 36);
+            this.保存位置.TabIndex = 17;
+            this.保存位置.Text = "保存位置：";
+            this.保存位置.UseVisualStyleBackColor = true;
+            this.保存位置.Click += new System.EventHandler(this.保存位置_Click);
             // 
             // 库_Value
             // 
@@ -293,6 +312,7 @@
             this.导出.TabIndex = 14;
             this.导出.Text = "导出";
             this.导出.UseVisualStyleBackColor = true;
+            this.导出.Click += new System.EventHandler(this.导出_Click);
             // 
             // 查询
             // 
@@ -302,6 +322,7 @@
             this.查询.TabIndex = 13;
             this.查询.Text = "查询";
             this.查询.UseVisualStyleBackColor = true;
+            this.查询.Click += new System.EventHandler(this.查询_Click);
             // 
             // 脚本语句
             // 
@@ -312,13 +333,13 @@
             this.脚本语句.TabIndex = 12;
             this.脚本语句.Text = "脚本语句：";
             // 
-            // richTextBox1
+            // 脚本语句_Value
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(268, 71);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(667, 433);
-            this.richTextBox1.TabIndex = 11;
-            this.richTextBox1.Text = "";
+            this.脚本语句_Value.Location = new System.Drawing.Point(268, 71);
+            this.脚本语句_Value.Name = "脚本语句_Value";
+            this.脚本语句_Value.Size = new System.Drawing.Size(667, 433);
+            this.脚本语句_Value.TabIndex = 11;
+            this.脚本语句_Value.Text = "";
             // 
             // 数据库ID_Value
             // 
@@ -484,25 +505,6 @@
             // 
             this.打开文件.FileName = "打开文件";
             // 
-            // 保存位置
-            // 
-            this.保存位置.Location = new System.Drawing.Point(258, 14);
-            this.保存位置.Name = "保存位置";
-            this.保存位置.Size = new System.Drawing.Size(129, 36);
-            this.保存位置.TabIndex = 17;
-            this.保存位置.Text = "保存位置：";
-            this.保存位置.UseVisualStyleBackColor = true;
-            this.保存位置.Click += new System.EventHandler(this.保存位置_Click);
-            // 
-            // 数据模式_保存位置
-            // 
-            this.数据模式_保存位置.AutoSize = true;
-            this.数据模式_保存位置.ForeColor = System.Drawing.Color.Lime;
-            this.数据模式_保存位置.Location = new System.Drawing.Point(393, 25);
-            this.数据模式_保存位置.Name = "数据模式_保存位置";
-            this.数据模式_保存位置.Size = new System.Drawing.Size(0, 15);
-            this.数据模式_保存位置.TabIndex = 18;
-            // 
             // 结果集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -572,7 +574,7 @@
         private System.Windows.Forms.ComboBox 数据库ID_Value;
         private System.Windows.Forms.Button 查询;
         private System.Windows.Forms.Label 脚本语句;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox 脚本语句_Value;
         private System.Windows.Forms.Button 导出;
         private System.Windows.Forms.TextBox 库_Value;
         private System.Windows.Forms.Label 库;
