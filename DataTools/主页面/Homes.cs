@@ -19,6 +19,10 @@ namespace DataTools
         /// 数据库链接集合
         /// </summary>
         private List<SqlUserDto> sqlUserDtos { get; set; }
+        /// <summary>
+        /// 结果集窗口
+        /// </summary>
+        public SqlDataShow sqlData = null;
         public 结果集()
         {
             InitializeComponent();
@@ -355,8 +359,6 @@ namespace DataTools
             数据模式_保存位置.Text = file.SelectFile();
         }
 
-        #endregion
-
         private void 查询_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(脚本语句_Value.Text))
@@ -364,7 +366,7 @@ namespace DataTools
                 MessageCommon.ShowErr("脚本语句不可为空！");
                 return;
             }
-            SqlDataShow sqlData = new SqlDataShow();
+
             #region 绑定数据
             string sqls = string.Empty;
             // 获取用户选择控件
@@ -380,13 +382,14 @@ namespace DataTools
             sqlUsers.DataBase = 库_Value.Text;
             sqlUsers.Uid = 用户名_Value.Text;
             sqlUsers.Pwd = 密码_Value.Text;
-            sqlUsers.DatabaseType = sqls;
-            sqlData.BingData(脚本语句_Value.Text, sqlUsers);
+            sqlUsers.DatabaseType = sqls;           
             #endregion
             #region 判断窗体是否已打开     
             Form test = Application.OpenForms["SqlDataShow"];  //查找是否打开过about窗体  
             if ((test == null) || (test.IsDisposed)) //如果没有打开过
             {
+                sqlData = new SqlDataShow();
+                sqlData.BingData(脚本语句_Value.Text, sqlUsers);
                 sqlData.Show();   //打开子窗体出来
             }
             else
@@ -404,6 +407,25 @@ namespace DataTools
                 MessageCommon.ShowErr("保存路径不能为空！");
                 return;
             }
+            string files = string.Empty;
+            // 获取用户选择控件
+            foreach (Control c in 数据模式_文件类型.Controls)
+            {
+                if (c is RadioButton && ((RadioButton)c).Checked == true)
+                {
+                    files = ((RadioButton)c).Name;
+                }
+            }
+            if (sqlData.ExportFile(数据模式_保存位置.Text, files))
+            {
+                MessageCommon.ShowInf("导出成功！");
+            }
+            else
+            {
+                MessageCommon.ShowInf("导出失败！");
+            }
         }
+        #endregion
+
     }
 }

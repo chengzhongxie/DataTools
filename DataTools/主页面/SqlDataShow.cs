@@ -1,4 +1,6 @@
-﻿using Common.Dto;
+﻿using Common;
+using Common.Dto;
+using Common.Enum;
 using Helper;
 using System;
 using System.Collections.Generic;
@@ -7,11 +9,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Utilities;
 
 namespace DataTools.主页面
 {
     public partial class SqlDataShow : Form
     {
+        private DataTable dt { get; set; }
         public SqlDataShow()
         {
             InitializeComponent();
@@ -38,7 +42,6 @@ namespace DataTools.主页面
             int width = 0;
             if (!string.IsNullOrWhiteSpace(sql))
             {
-                DataTable dt = new DataTable();
                 SqlHelper sqlHelper = new SqlHelper(sqlUser.Server, sqlUser.Uid, sqlUser.Pwd, sqlUser.DataBase, sqlUser.DatabaseType);
                 this.查询结果集.DataBindings.Clear();
                 dt = sqlHelper.GetDataTable(sql);
@@ -63,6 +66,39 @@ namespace DataTools.主页面
                 {
                     this.查询结果集.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
+            }
+        }
+
+        /// <summary>
+        /// 导出文件
+        /// </summary>
+        /// <param name="fileUrl">保存位置</param>
+        /// <param name="files">文件类型</param>
+        public bool ExportFile(string fileUrl, string files)
+        {
+            if (dt == null && dt.Rows.Count > 0)
+            {
+                MessageCommon.ShowErr("结果集不能为空！");
+            }
+            if (files == FileEnum.JsonFiles)
+            {
+                JsonUtilities jsonUtilities = new JsonUtilities();
+                return jsonUtilities.SaveJson(dt, fileUrl);
+            }
+            else if (files == FileEnum.ExcelFiles)
+            {
+                ExcelUtilities excelUtilities = new ExcelUtilities();
+                return excelUtilities.ToExcel(dt, fileUrl);
+            }
+            else if (files == FileEnum.XMLFiles)
+            {
+                XmlUtilities xmlUtilities = new XmlUtilities();
+                string xml = xmlUtilities.ConvertDataTableToXML(dt);
+                return xmlUtilities.SaveXml(xml, fileUrl);
+            }
+            else
+            {
+                return false;
             }
         }
     }

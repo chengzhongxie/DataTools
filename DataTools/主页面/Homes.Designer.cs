@@ -64,9 +64,9 @@
             this.用户名 = new System.Windows.Forms.Label();
             this.数据库ID = new System.Windows.Forms.Label();
             this.数据模式_文件类型 = new System.Windows.Forms.GroupBox();
-            this.XML文件 = new System.Windows.Forms.RadioButton();
-            this.Json文件 = new System.Windows.Forms.RadioButton();
-            this.Excel文件 = new System.Windows.Forms.RadioButton();
+            this.XML = new System.Windows.Forms.RadioButton();
+            this.Json = new System.Windows.Forms.RadioButton();
+            this.Excel = new System.Windows.Forms.RadioButton();
             this.打开文件 = new System.Windows.Forms.OpenFileDialog();
             this.保存文件 = new System.Windows.Forms.SaveFileDialog();
             this.打开文件夹 = new System.Windows.Forms.FolderBrowserDialog();
@@ -87,21 +87,21 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(965, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(965, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 文件模式ToolStripMenuItem
             // 
             this.文件模式ToolStripMenuItem.Name = "文件模式ToolStripMenuItem";
-            this.文件模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+            this.文件模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.文件模式ToolStripMenuItem.Text = "文件模式";
             this.文件模式ToolStripMenuItem.Click += new System.EventHandler(this.文件模式ToolStripMenuItem_Click);
             // 
             // 数据模式ToolStripMenuItem
             // 
             this.数据模式ToolStripMenuItem.Name = "数据模式ToolStripMenuItem";
-            this.数据模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+            this.数据模式ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.数据模式ToolStripMenuItem.Text = "数据模式";
             this.数据模式ToolStripMenuItem.Click += new System.EventHandler(this.数据模式ToolStripMenuItem_Click);
             // 
@@ -460,46 +460,46 @@
             // 
             // 数据模式_文件类型
             // 
-            this.数据模式_文件类型.Controls.Add(this.XML文件);
-            this.数据模式_文件类型.Controls.Add(this.Json文件);
-            this.数据模式_文件类型.Controls.Add(this.Excel文件);
+            this.数据模式_文件类型.Controls.Add(this.XML);
+            this.数据模式_文件类型.Controls.Add(this.Json);
+            this.数据模式_文件类型.Controls.Add(this.Excel);
             this.数据模式_文件类型.Location = new System.Drawing.Point(14, 17);
             this.数据模式_文件类型.Name = "数据模式_文件类型";
             this.数据模式_文件类型.Size = new System.Drawing.Size(238, 92);
             this.数据模式_文件类型.TabIndex = 0;
             this.数据模式_文件类型.TabStop = false;
             // 
-            // XML文件
+            // XML
             // 
-            this.XML文件.AutoSize = true;
-            this.XML文件.Location = new System.Drawing.Point(19, 54);
-            this.XML文件.Name = "XML文件";
-            this.XML文件.Size = new System.Drawing.Size(82, 19);
-            this.XML文件.TabIndex = 2;
-            this.XML文件.Text = "XML文件";
-            this.XML文件.UseVisualStyleBackColor = true;
+            this.XML.AutoSize = true;
+            this.XML.Location = new System.Drawing.Point(19, 54);
+            this.XML.Name = "XML";
+            this.XML.Size = new System.Drawing.Size(82, 19);
+            this.XML.TabIndex = 2;
+            this.XML.Text = "XML文件";
+            this.XML.UseVisualStyleBackColor = true;
             // 
-            // Json文件
+            // Json
             // 
-            this.Json文件.AutoSize = true;
-            this.Json文件.Location = new System.Drawing.Point(123, 19);
-            this.Json文件.Name = "Json文件";
-            this.Json文件.Size = new System.Drawing.Size(90, 19);
-            this.Json文件.TabIndex = 1;
-            this.Json文件.Text = "Json文件";
-            this.Json文件.UseVisualStyleBackColor = true;
+            this.Json.AutoSize = true;
+            this.Json.Location = new System.Drawing.Point(123, 19);
+            this.Json.Name = "Json";
+            this.Json.Size = new System.Drawing.Size(90, 19);
+            this.Json.TabIndex = 1;
+            this.Json.Text = "Json文件";
+            this.Json.UseVisualStyleBackColor = true;
             // 
-            // Excel文件
+            // Excel
             // 
-            this.Excel文件.AutoSize = true;
-            this.Excel文件.Checked = true;
-            this.Excel文件.Location = new System.Drawing.Point(19, 19);
-            this.Excel文件.Name = "Excel文件";
-            this.Excel文件.Size = new System.Drawing.Size(98, 19);
-            this.Excel文件.TabIndex = 0;
-            this.Excel文件.TabStop = true;
-            this.Excel文件.Text = "Excel文件";
-            this.Excel文件.UseVisualStyleBackColor = true;
+            this.Excel.AutoSize = true;
+            this.Excel.Checked = true;
+            this.Excel.Location = new System.Drawing.Point(19, 19);
+            this.Excel.Name = "Excel";
+            this.Excel.Size = new System.Drawing.Size(98, 19);
+            this.Excel.TabIndex = 0;
+            this.Excel.TabStop = true;
+            this.Excel.Text = "Excel文件";
+            this.Excel.UseVisualStyleBackColor = true;
             // 
             // 打开文件
             // 
@@ -558,9 +558,9 @@
         private System.Windows.Forms.RadioButton Excel转XML;
         private System.Windows.Forms.GroupBox 数据模式_文件类型;
         private System.Windows.Forms.Label 数据库ID;
-        private System.Windows.Forms.RadioButton XML文件;
-        private System.Windows.Forms.RadioButton Json文件;
-        private System.Windows.Forms.RadioButton Excel文件;
+        private System.Windows.Forms.RadioButton XML;
+        private System.Windows.Forms.RadioButton Json;
+        private System.Windows.Forms.RadioButton Excel;
         private System.Windows.Forms.TextBox 密码_Value;
         private System.Windows.Forms.Label 密码;
         private System.Windows.Forms.TextBox 用户名_Value;
